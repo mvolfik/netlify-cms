@@ -20,6 +20,7 @@ import { connect } from 'react-redux';
 
 import { SettingsDropdown } from '../UI';
 import { checkBackendStatus } from '../../actions/status';
+import { getExtraCMSTabs } from '../../lib/registry';
 
 const styles = {
   buttonActive: css`
@@ -195,6 +196,14 @@ class Header extends React.Component {
                   </AppHeaderButton>
                 </li>
               )}
+              {getExtraCMSTabs().map(tab => (
+                <li key={tab.id}>
+                  <AppHeaderNavLink to={`/plugin/${tab.id}`} activeClassName="header-link-active">
+                    <Icon type={tab.icon || 'settings'} />
+                    {tab.label}
+                  </AppHeaderNavLink>
+                </li>
+              ))}
             </AppHeaderNavList>
           </nav>
           <AppHeaderActions>

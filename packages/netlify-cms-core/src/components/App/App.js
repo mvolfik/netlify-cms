@@ -23,6 +23,7 @@ import Workflow from '../Workflow/Workflow';
 import Editor from '../Editor/Editor';
 import NotFoundPage from './NotFoundPage';
 import Header from './Header';
+import { getExtraCMSTabs } from '../../lib/registry';
 
 TopBarProgress.config({
   barColors: {
@@ -244,6 +245,9 @@ class App extends React.Component {
                 return <Redirect to={`/collections/${name}/entries/${entryName}`} />;
               }}
             />
+            {getExtraCMSTabs().map(({ id, component }) => (
+              <Route key={id} path={`/plugin/${id}`} component={component} />
+            ))}
             <Route component={NotFoundPage} />
           </Switch>
           {useMediaLibrary ? <MediaLibrary /> : null}

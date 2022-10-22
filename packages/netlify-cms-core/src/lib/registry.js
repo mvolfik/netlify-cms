@@ -21,6 +21,7 @@ allowedEvents.forEach(e => {
  * Global Registry Object
  */
 const registry = {
+  CMSTabs: [],
   backends: {},
   templates: {},
   previewStyles: [],
@@ -34,6 +35,8 @@ const registry = {
 };
 
 export default {
+  registerCMSTab,
+  getExtraCMSTabs,
   registerPreviewStyle,
   getPreviewStyles,
   registerPreviewTemplate,
@@ -59,6 +62,16 @@ export default {
   getEventListeners,
   invokeEvent,
 };
+
+/**
+ * Extra tabs in the CMS App
+ */
+export function registerCMSTab(options) {
+  registry.CMSTabs.push(options);
+}
+export function getExtraCMSTabs() {
+  return registry.CMSTabs;
+}
 
 /**
  * Preview Styles
